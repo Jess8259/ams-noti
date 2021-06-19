@@ -1,0 +1,14 @@
+spring:
+  profiles: 
+    active: default
+  application:
+    name: knoxmail-g
+  session:
+    timeout: 1800
+    store-type: none
+       
+server:
+  port: 8084
+  servlet:
+   context-path: /api/knoxmail
+

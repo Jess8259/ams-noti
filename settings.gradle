@@ -1,0 +1,8 @@
+rootProject.name = 'ams-noti'
+include('lib')
+
+include 'ams-noti-manager-g'
+include 'ams-noti-sender-g'
+include 'ams-noti-knoxmail-g'
+include 'knoxmail-g'
+

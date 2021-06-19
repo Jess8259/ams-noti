@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: ams-noti-manager-g
+spec:
+ selector:
+   matchLabels:
+     app: ams-noti-manager-g
+ template:
+  metadata:
+    labels: 
+     app: ams-noti-manager-g
+  spec:
+   containers: 
+    - name: ams-noti-manager-g
+      image: ams-noti-manager-g
+      ports:
+        - containerPort: 8081
+      resources:
+        requests:
+          cpu: 100m
+          memory: 64Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ams-noti-manager-g
+spec:
+  type: ClusterIP
+  selector:
+    app: ams-noti-manager-g
+  ports:
+  - port: 8081

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: knoxmail-g
+spec:
+ selector:
+   matchLabels:
+     app: knoxmail-g
+ template:
+  metadata:
+    labels: 
+     app: knoxmail-g
+  spec:
+   containers: 
+    - name: knoxmail-g
+      image: knoxmail-g
+      ports:
+        - containerPort: 8084
+      resources:
+        requests:
+          cpu: 100m
+          memory: 64Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: knoxmail-g
+spec:
+  type: ClusterIP
+  selector:
+    app: knoxmail-g
+  ports:
+  - port: 8084

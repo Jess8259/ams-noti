@@ -1,0 +1,46 @@
+spring:
+  profiles: 
+    active: default
+  application:
+    name: ams-noti-manager
+  session:
+    timeout: 1800
+    store-type: none
+  datasource:
+   url: jdbc:h2:mem:testdb
+   driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+      path: /h2
+       
+server:
+  port: 8081
+  servlet:
+   context-path: /api/ams-noti-manager
+  
+management:
+ endpoints:
+    web:
+      exposure:
+        include:
+        - '*'
+        
+hystrix:
+  command:
+    default:    # command key. use 'default' for global setting.
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+      circuitBreaker:
+        requestVolumeThreshold: 5   # Minimum number of request to calculate circuit breaker's health. default 20
+        sleepWindowInMilliseconds: 5000
+    
+     
+ 
