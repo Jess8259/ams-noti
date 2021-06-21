@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: ams-noti-knoxmail-g
+spec:
+ selector:
+   matchLabels:
+     app: ams-noti-knoxmail-g
+ template:
+  metadata:
+    labels: 
+     app: ams-noti-knoxmail-g
+  spec:
+   containers: 
+    - name: ams-noti-knoxmail-g
+      image: gcr.io/architect-certification-289902/team6/ams-noti-knoxmail-g@sha256:eed49580cab950cf81b81f23eae79f9d93dae96c79f78d73f15ffcd44f31ae2b
+      ports:
+        - containerPort: 8083
+      env:
+        - name: SPRING_REDIS_HOST
+          value: redis
+      resources:
+        requests:
+          cpu: 100m
+          memory: 64Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ams-noti-knoxmail-g
+spec:
+  type: ClusterIP
+  selector:
+    app: ams-noti-knoxmail-g
+  ports:
+  - port: 8083
