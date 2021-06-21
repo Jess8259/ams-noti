@@ -27,7 +27,7 @@ spec:
         container('gradle') {
           dir('ams-noti-knoxmail-g') {
             withCredentials([file(credentialsId: 'gcr-credential', variable: 'GCR_CREDENTIAL_JSON')]) {
-              sh 'gradle jib --no-daemon --image gcr.io/$PROJECT_ID/$MEMBER_ID/caasportal-backend:$BUILD_ID -Djib.to.auth.username=_json_key -Djib.to.auth.password="$( cat $GCR_CREDENTIAL_JSON )"'
+              sh 'gradle jib --no-daemon --image gcr.io/$PROJECT_ID/$MEMBER_ID/ams-noti-knoxmail-g:$BUILD_ID -Djib.to.auth.username=_json_key -Djib.to.auth.password="$( cat $GCR_CREDENTIAL_JSON )"'
             }
           }
         }
