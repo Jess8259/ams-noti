@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ams-noti-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api/ams-noti-manager
+            backend:
+              serviceName: ams-noti-manager-g
+              servicePort: 8081
+          - path: /api/ams-noti-sender
+            backend:
+              serviceName: ams-noti-sender-g
+              servicePort: 8082
+          - path: /api/ams-noti-knoxmail
+            backend:
+              serviceName: ams-noti-knoxmail-g
+              servicePort: 8083
+          - path: /api/knoxmail
+            backend:
+              serviceName: knoxmail-g
+              servicePort: 8084
+          
+
+
+

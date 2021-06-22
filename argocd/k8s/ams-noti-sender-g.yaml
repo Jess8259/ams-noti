@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: ams-noti-sender-g
+spec:
+ selector:
+   matchLabels:
+     app: ams-noti-sender-g
+ template:
+  metadata:
+    labels: 
+     app: ams-noti-sender-g
+  spec:
+   containers: 
+    - name: ams-noti-sender-g
+      image: gcr.io/architect-certification-289902/team6/ams-noti-sender-g@sha256:60289785c10d177267f51a4f9537d8f5ac7f661e62443f61c157811e3f0cae2c
+      ports:
+        - containerPort: 8082
+      resources:
+        requests:
+          cpu: 100m
+          memory: 64Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ams-noti-sender-g
+spec:
+  type: ClusterIP
+  selector:
+    app: ams-noti-sender-g
+  ports:
+  - port: 8082
