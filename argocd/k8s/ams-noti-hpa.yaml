@@ -8,18 +8,18 @@ spec:
     kind: Deployment
     name: ams-noti-knoxmail-g
   minReplicas: 1
-  maxReplicas: 3
+  maxReplicas: 2
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 10
+        averageUtilization: 1000
   - type: Resource
     resource:
       name: memory
       target:
         type: AverageValue
-        averageValue: 64Mi
+        averageValue: 512Mi
         
