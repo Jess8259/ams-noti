@@ -25,7 +25,3 @@ spec:
             backend:
               serviceName: knoxmail-g
               servicePort: 8084
-          
-
-
-
